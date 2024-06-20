@@ -103,4 +103,40 @@ const filmy = [
 			'Na zámek v podhůří Krkonoš přijíždí jeho nový majitel Štěpán se svojí snoubenkou, krásnou komtesou Blankou, a mladším bratrem Adamem. Cestou kočár nešťastně srazí kolemjdoucí dívku, Adam jí pomůže a ona se do něj zamiluje. Na zámku Adam objeví starou vlašskou knihu, která by měla obsahovat cestu k pokladům. Tajemné značky vlašské knihy však nedokáže vyluštit ani národopisec Jiráček, který v kraji sbírá pověsti a nevychází z údivu nad tím, že zdejší lidé stále věří v Krakonoše. Na zámku se objeví záhadný cizinec a nabídne Štěpánovi, že jej k pokladu za určitých podmínek dovede. Výprava do hor může začít. Naplní se Liduščina láska k Adamovi? Jakou záhadu skrývá starý obraz na zámku Hůrka a co strašlivého se v horách kdysi odehrálo? A kdo je vlastně Krakonoš a jaké je jeho největší tajemství? (csfd.cz, Česká televize)',
 		premiera: '2022-12-24',
 	},
+	{
+		id: 'Vetrelec',
+		nazev: 'Vetřelec',
+		plakat: {
+			url: 'https://image.pmgstatic.com/cache/resized/w420/files/images/film/posters/159/449/159449928_d6eea3.png',
+			sirka: 420,
+			vyska: 592,
+		},
+		ochutnavka: 'Večerníček pro dospělé.',
+		popis: 'Když lezete kam nemáte, musíte očekávat následky. Ikonický horor, který natočil režisér Ridley Scott, nás zavede do roku 2122, kde na vesmírné lodi Nostromo fungují CRT monitory. Jo a taky je tam jeden android, jeden Facehugger, jeden roztomilý Vetřelec a lady Ripley, která si ho (pozor Spoiler) opeče na rožni.',
+		premiera: '1979-06-22',
+	},
 ]
+
+const seznamFilmu = document.querySelector('#seznam-filmu');
+
+
+	filmy.forEach((filmik) => {
+		seznamFilmu.innerHTML += 
+		`<div class="col">
+   <div class="card">
+      <img
+         src="${filmik.plakat.url}"
+         width="${filmik.sirka}"
+         height="${filmik.vyska}"
+         class="card-img-top"
+         alt="plakát"
+      />
+      <div class="card-body">
+         <h5 class="card-title">${filmik.nazev}</h5>
+         <p class="card-text">${filmik.ochutnavka}</</p>
+         <a href="film.html#${filmik.id}" class="btn btn-primary">Přehrát</a>
+      </div>
+   </div>
+</div>`
+	});
+

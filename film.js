@@ -18,7 +18,7 @@ const filmy = [
 		plakat: {
 			url: 'https://image.pmgstatic.com/cache/resized/w420/files/images/film/posters/164/987/164987945_c36f6f.jpg',
 			sirka: 420,
-			vyska: 595,
+			vyska: 592,
 		},
 		ochutnavka: 'Český krimi thriller s Karlem Rodenem.',
 		popis:
@@ -103,4 +103,76 @@ const filmy = [
 			'Na zámek v podhůří Krkonoš přijíždí jeho nový majitel Štěpán se svojí snoubenkou, krásnou komtesou Blankou, a mladším bratrem Adamem. Cestou kočár nešťastně srazí kolemjdoucí dívku, Adam jí pomůže a ona se do něj zamiluje. Na zámku Adam objeví starou vlašskou knihu, která by měla obsahovat cestu k pokladům. Tajemné značky vlašské knihy však nedokáže vyluštit ani národopisec Jiráček, který v kraji sbírá pověsti a nevychází z údivu nad tím, že zdejší lidé stále věří v Krakonoše. Na zámku se objeví záhadný cizinec a nabídne Štěpánovi, že jej k pokladu za určitých podmínek dovede. Výprava do hor může začít. Naplní se Liduščina láska k Adamovi? Jakou záhadu skrývá starý obraz na zámku Hůrka a co strašlivého se v horách kdysi odehrálo? A kdo je vlastně Krakonoš a jaké je jeho největší tajemství? (csfd.cz, Česká televize)',
 		premiera: '2022-12-24',
 	},
+	
+	{
+		id: 'Vetrelec',
+		nazev: 'Vetřelec',
+		plakat: {
+			url: 'https://image.pmgstatic.com/cache/resized/w420/files/images/film/posters/159/449/159449928_d6eea3.png',
+			sirka: 420,
+			vyska: 592,
+		},
+		ochutnavka: 'Večerníček pro dospělé.',
+		popis: 'Když lezete kam nemáte, musíte očekávat následky. Ikonický horor, který natočil režisér Ridley Scott, nás zavede do roku 2122, kde na vesmírné lodi Nostromo fungují CRT monitory. Jo a taky je tam jeden android, jeden Facehugger, jeden roztomilý Vetřelec a lady Ripley, která si ho (pozor Spoiler) opeče na rožni.',
+		premiera: '1979-06-22',
+	},
 ]
+
+
+//console.log(location.hash)
+
+const hashLoc = location.hash.slice (1);
+
+const filmFound = filmy.find ((filmElement) => filmElement.id === hashLoc);
+
+//console.log (filmFound)
+
+const cardTitle = document.querySelector('.card-title').innerHTML = filmFound.nazev;
+
+const cardText = document.querySelector('.card-text').innerHTML = filmFound.popis;
+
+document.querySelector ('img').src = filmFound.plakat.url;
+
+
+const noteForm = document.querySelector('#note-form');
+noteForm.addEventListener("submit",(evnt)=>{evnt.preventDefault()
+	const MsgInput = document.querySelector('#message-input');
+	const NewMsgInput = MsgInput.value;
+	const termsCHeckbox = document.querySelector('#terms-checkbox');
+	if (NewMsgInput === ''){MsgInput.classList.add("is-invalid")
+		MsgInput.focus()}
+	else if (!termsCHeckbox.checked) {termsCHeckbox.classList.add("is-invalid")
+		termsCHeckbox.focus()} 
+else {noteForm.innerHTML = `<p class="card-text">${NewMsgInput}</p>`}});
+
+
+
+let pocetHvezdicek = 3;
+const faStar = document.querySelectorAll('.fa-star');
+
+
+const hvezdicky = (pocet) => {
+		faStar.forEach((star, index) => {
+				if (index < pocet) {
+			star.classList.remove('far');
+			star.classList.add('fas');
+		} else {star.classList.remove('fas');
+			star.classList.add('far');}
+	});
+}
+
+const klik = (evnt) => {pocetHvezdicek = Number(evnt.target.textContent);
+		hvezdicky(number);}
+
+const vstup = (evnt) => {hvezdicky(Number(evnt.target.textContent));}
+
+const vystup = () => {hvezdicky(pocetHvezdicek);}
+
+faStar.forEach((hvezda) => {
+	hvezda.addEventListener('click', klik);
+	hvezda.addEventListener('mouseenter', vstup);
+	hvezda.addEventListener('mouseleave', vystup);
+});
+
+
+
